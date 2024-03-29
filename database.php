@@ -102,11 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "(SELECT Address, Price, Beds, Baths, Area, Measurement, `Property Type`, 'Zillow' AS Source, URL FROM zillow_homes WHERE Price BETWEEN $minPrice AND $maxPrice AND Beds >= $minBeds AND Baths >= $minBaths AND Area >= $minArea)
                 UNION
                 (SELECT Address, Price, Beds, Baths, Area, Measurement, `Property Type`, 'Realtor' AS Source, URL FROM realtor_homes WHERE Price BETWEEN $minPrice AND $maxPrice AND Beds >= $minBeds AND Baths >= $minBaths AND Area >= $minArea)";
-    } elseif ($category == 'land') {
-        $sql = "(SELECT * FROM zillow_land WHERE Price BETWEEN $minPrice AND $maxPrice)
-                UNION
-                (SELECT * FROM realty_land WHERE Price BETWEEN $minPrice AND $maxPrice)";
-    }
+    } 
 
     $result = $conn->query($sql);
 
